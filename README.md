@@ -31,3 +31,5 @@ For a detailed explanation on how things work, check out the [guide](http://vuej
 * **Style guide:** https://vuejs.org/v2/style-guide
 * **Multiple links:** https://github.com/vuejs/awesome-vue
 * **Cheatsheet:** https://vuejs-tips.github.io/cheatsheet/
+* **Forum:** https://forum.vuejs.org/
+* **Gitbook(Spanish):** https://www.gitbook.com/book/jdonsan/desarrolla-aplicaciones-con-vuejs/details
