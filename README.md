@@ -25,3 +25,9 @@ npm test
 ```
 
 For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+
+## Extra info
+
+* **Style guide:** https://vuejs.org/v2/style-guide
+* **Multiple links:** https://github.com/vuejs/awesome-vue
+* **Cheatsheet:** https://vuejs-tips.github.io/cheatsheet/
