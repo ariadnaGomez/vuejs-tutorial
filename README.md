@@ -4,7 +4,7 @@
 
 ## Build Setup
 
-``` bash
+```bash
 # install dependencies
 npm install
 
@@ -33,3 +33,4 @@ For a detailed explanation on how things work, check out the [guide](http://vuej
 * **Cheatsheet:** https://vuejs-tips.github.io/cheatsheet/
 * **Forum:** https://forum.vuejs.org/
 * **Gitbook(Spanish):** https://www.gitbook.com/book/jdonsan/desarrolla-aplicaciones-con-vuejs/details
+* **Boilerplate app with style guide:** https://github.com/chrisvfritz/vue-enterprise-boilerplate
