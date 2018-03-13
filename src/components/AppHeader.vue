@@ -6,7 +6,8 @@
       @select="handleSelect"
       background-color="#545c64"
       text-color="#fff"
-      active-text-color="#ffd04b">
+      active-text-color="#ffd04b"
+    >
       <div class="logo">
         <img class="logoImg" src="@/assets/Teletubbies_Logo.png">
       </div>
