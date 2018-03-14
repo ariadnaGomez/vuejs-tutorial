@@ -24,7 +24,7 @@ router.beforeEach((to, from, next) => {
 })
 
 router.afterEach((to, from) => {
-  loadingPage.close(
+  loadingPage.close()
 })
 
 export default router
