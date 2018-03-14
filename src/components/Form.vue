@@ -5,21 +5,10 @@
       :model="form"
       label-width="120px">
       <el-row :gutter="20">
-        <el-col
-          :span="12"
-          :offset="6">
-          <el-form-item label="Activity name">
-            <el-input v-model="form.name"/>
-          </el-form-item>
-        </el-col>
-        <el-col
-          :span="12"
-          :offset="6">
-          <el-form-item label="Activity email">
-            <el-input v-model="form.mail"/>
-          </el-form-item>
-        </el-col>
-
+        <custom-input
+          label="Nombre"/>
+        <custom-input
+          label="Email"/>
       </el-row>
     </el-form>
     <el-button @click="clickTheButton()">Click me!</el-button>
@@ -27,27 +16,23 @@
 </template>
 
 <script>
-
+import CustomInput from './CustomInput.vue'
 export default {
   name: 'Form',
-  data () {
-    return {
-      form: {
-        name: 'Bla',
-        mail: 'mail@mail.com'
-      }
+  components: {CustomInput},
+  computed: {
+    formErrors () {
+      return [
+        this.$store.getters.getNameError,
+        this.$store.getters.getEmailError
+      ].filter(error => error !== null)
     }
   },
   methods: {
     clickTheButton () {
-      let message = '<p>The following fields must be reviewed: </p>'
-      if (!this.form.name || !this.form.mail) {
-        if (!this.form.name) {
-          message += '<p>name</p>'
-        }
-        if (!this.form.mail) {
-          message += '<p>email</p> '
-        }
+      if (this.formErrors.length) {
+        let message = '<p>The following fields must be reviewed: </p>'
+        this.formErrors.forEach(error => { message += `<p>${error}</p>` })
         this.$message({
           showClose: true,
           type: 'warning',
@@ -64,9 +49,12 @@ export default {
 <style lang="scss" scoped>
     .form  {
 
-    /deep/ label {
-        color: red;
+    /deep/ .blabla {
+
+     label {
+        color: red !important;
     }
+  }
     .el-form-item {
       /deep/ .el-form-item__content {
         margin-left: 0;
