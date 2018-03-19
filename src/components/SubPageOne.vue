@@ -1,144 +1,212 @@
 <template>
-  <div class="container">
-    <h1>Formulario</h1>
-
-    <el-form ref="form"
-             :model="form"
-             label-width="120px">
-
-      <el-form-item class="firsLine"
-                    label-width="0">
-
-        <el-row>
-
-          <el-col :sm="12"
-                  :xs="24"
-                  :md="8">
-            <el-form-item label="Nombre">
-              <el-input v-model="form.name"></el-input>
-            </el-form-item>
-          </el-col>
-
-          <el-col :sm="12"
-                  :xs="24"
-                  :md="8">
-            <el-form-item label="1º Apellido">
-              <el-input v-model="form.name"></el-input>
-            </el-form-item>
-          </el-col>
-
-          <el-col :sm="12"
-                  :xs="24"
-                  :md="8">
-            <el-form-item label="2º Apellido">
-              <el-input v-model="form.name"></el-input>
-            </el-form-item>
-          </el-col>
-        </el-row>
-      </el-form-item>
-
-      <el-form-item label="Activity zone">
-        <el-select v-model="form.region"
-                   placeholder="please select your zone">
-          <el-option label="Zone one"
-                     value="shanghai"></el-option>
-          <el-option label="Zone two"
-                     value="beijing"></el-option>
-        </el-select>
-      </el-form-item>
-
-      <el-form-item label="Activity time">
-        <el-col :span="11">
-          <el-date-picker type="date"
-                          placeholder="Pick a date"
-                          v-model="form.date1"
-                          style="width: 100%;"></el-date-picker>
+  <div class="form">
+    <h1 class="title">Formulario de contacto</h1>
+    <el-form
+      ref="form"
+      :model="form"
+      label-width="120px">
+      <el-row :gutter="20">
+        <el-col
+          :xs="{span: 18, offset: 2}"
+          :span="10"
+          :offset="2">
+          <el-form-item label="Nombre">
+            <el-input v-model="form.firstName"/>
+          </el-form-item>
         </el-col>
-        <el-col class="line"
-                :span="2">-
+        <el-col
+          :xs="{span: 18, offset: 2}"
+          :span="10">
+          <el-form-item label="Apellidos">
+            <el-input v-model="form.lastName"/>
+          </el-form-item>
         </el-col>
-        <el-col :span="11">
-          <el-time-picker type="fixed-time"
-                          placeholder="Pick a time"
-                          v-model="form.date2"
-                          style="width: 100%;"></el-time-picker>
+      </el-row>
+
+      <el-row :gutter="20">
+        <el-col
+          :xs="{span: 18, offset: 2}"
+          :sm="{span: 10, offset: 2}"
+          :md="{span: 6, offset: 3}">
+          <el-form-item label="País">
+            <el-input v-model="form.country"/>
+          </el-form-item>
         </el-col>
-      </el-form-item>
+        <el-col
+            :xs="{span: 18, offset: 2}"
+          :sm="{span: 10}"
+          :md="6">
+          <el-form-item label="Provincia">
+            <el-input v-model="form.province"/>
+          </el-form-item>
+        </el-col>
+        <el-col class="offset-0"
+          :xs="{span: 18, offset: 2}"
+          :sm="{span: 10, offset: 2}"
+          :md="{span: 6, offset: 2}">
+          <el-form-item label="Ciudad">
+            <el-input v-model="form.city"/>
+          </el-form-item>
+        </el-col>
+      </el-row>
 
-      <el-form-item label="Instant delivery">
-        <el-switch v-model="form.delivery"></el-switch>
-      </el-form-item>
-      <el-form-item label="Activity type">
-        <el-checkbox-group v-model="form.type">
-          <el-checkbox label="Online activities"
-                       name="type"></el-checkbox>
-          <el-checkbox label="Promotion activities"
-                       name="type"></el-checkbox>
-          <el-checkbox label="Offline activities"
-                       name="type"></el-checkbox>
-          <el-checkbox label="Simple brand exposure"
-                       name="type"></el-checkbox>
-        </el-checkbox-group>
-      </el-form-item>
+      <el-row :gutter="20">
+        <el-col
+          :xs="{span: 18, offset: 2}"
+          :sm="{span: 10, offset: 2}"
+          :md="{span: 6, offset: 6}">
+          <el-form-item label="Sit. personal">
+            <el-select v-model="form.personal"
+                       placeholder="Situación laboral">
+              <el-option label="Soltero"
+                         value="Soltero"></el-option>
+              <el-option label="Casado"
+                         value="Casado"></el-option>
+            </el-select>
+          </el-form-item>
+        </el-col>
+        <el-col
+          :xs="{span: 18, offset: 2}"
+          :sm="{span: 10}"
+          :md="6">
+          <el-form-item label="Situ. profesional">
+            <el-select v-model="form.profesional"
+                       placeholder="Situación profesional">
+              <el-option label="Desempleado"
+                         value="Desempleado"></el-option>
+              <el-option label="Empleado"
+                         value="Empleado"></el-option>
+            </el-select>
+          </el-form-item>
+        </el-col>
+      </el-row>
+      <el-row :gutter="20">
+        <el-col
+          :xs="{span: 18, offset: 2}"
+          :sm="{span: 20, offset: 2}"
+          :md="{span: 12, offset: 6}">
+          <el-form-item label="Último empleo">
+            <el-input v-model="form.city"/>
+          </el-form-item>
+        </el-col>
+      </el-row>
+      <el-row :gutter="20">
+        <el-col
+          :xs="{span: 8, offset: 2}"
+          :sm="{span: 13, offset: 2}"
+          :md="{span: 12, offset: 6}">
+          <el-form-item label="Competencias">
+            <el-checkbox-group v-model="form.type">
+              <el-col
+                :xs="{span: 16, offset: 8}"
+                :sm="{span: 6, offset: 6}">
+                <el-checkbox label="Online activities"
+                           name="type"></el-checkbox>
+              </el-col>
+              <el-col
+                :xs="{span: 16, offset: 8}"
+                :sm="{span: 6, offset: 6}">
+                <el-checkbox label="Promotion activities"
+                           name="type"></el-checkbox>
+              </el-col>
+              <el-col
+                :xs="{span: 16, offset: 8}"
+                :sm="{span: 6, offset: 6}">
+                <el-checkbox label="Offline activities"
+                           name="type"></el-checkbox>
+              </el-col>
+              <el-col
+                :xs="{span: 16, offset: 8}"
+                :sm="{span: 6, offset: 6}">
+                <el-checkbox label="Simple brand exposure"
+                           name="type"></el-checkbox>
+              </el-col>
 
-      <el-form-item label="Resources">
-        <el-radio-group v-model="form.resource">
-          <el-radio label="Sponsor"></el-radio>
-          <el-radio label="Venue"></el-radio>
-        </el-radio-group>
-      </el-form-item>
-
-      <el-form-item label="Activity form">
-        <el-input type="textarea"
-                  v-model="form.desc"></el-input>
-      </el-form-item>
-
-      <el-form-item>
-        <el-button type="primary"
-                   @click="onSubmit">Create
-        </el-button>
-        <el-button>Cancel</el-button>
-      </el-form-item>
-
+            </el-checkbox-group>
+          </el-form-item>
+        </el-col>
+      </el-row>
     </el-form>
+    <el-button @click="clickTheButton()">Click me!</el-button>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'sub-page-one',
+  name: 'sub-pabe-one',
   data () {
     return {
       form: {
-        name: '',
-        region: '',
-        date1: '',
-        date2: '',
-        delivery: false,
-        type: [],
-        resource: '',
-        desc: ''
+        firstName: 'Bla',
+        lastName: 'mail@mail.com',
+        country: '',
+        province: '',
+        city: '',
+        personal: '',
+        professional: '',
+        type: []
       }
     }
   },
   methods: {
-    onSubmit () {
-      console.log('submit!' + this.form.name)
+    clickTheButton () {
+      let message = '<p><b>The following fields must be reviewed: </b></p>'
+      if (!this.form.firstName || !this.form.lastName || this.form.type.length === 0) {
+        if (!this.form.firstName) {
+          message += '<p>name</p>'
+        }
+        if (!this.form.lastName) {
+          message += '<p>email</p> '
+        }
+        if (this.form.type.length === 0) {
+          message += '<p>Some competition is necessary</p> '
+        }
+        this.$message({
+          showClose: true,
+          type: 'warning',
+          dangerouslyUseHTMLString: true,
+          message: message
+        })
+      }
     }
   }
 }
 </script>
 
-<style scoped>
-  .container {
-    margin-right: 25px;
-    /*text-align: center;*/
-  }
+<style lang="scss"
+       scoped>
+  .form {
+    text-align: center;
+    font-family: "Comic Sans MS";
 
-  .firsLine {
-  }
+    .title{
+      margin: 75px 0 40px 0;
+      /*font-family: "Comic Sans MS";*/
+      color: deepskyblue;
+    }
 
-  .el-input {
-    /*width: 250px;*/
+    el-select {
+      width: 10%;
+    }
+    /deep/ .el-input__inner{
+      color: red;
+    }
+    /deep/ label {
+      /*font-family: "Comic Sans MS";*/
+      /*color: red;*/
+    }
+    .el-form-item {
+      /deep/ .el-form-item__content {
+        /*font-family: "Comic Sans MS";*/
+        margin-left: 0;
+      }
+    }
+  }
+  @media (min-width: 992px) {
+    .form{
+      .el-col-md-offset-2{
+        margin-left: 0px;
+      }
+    }
   }
 </style>

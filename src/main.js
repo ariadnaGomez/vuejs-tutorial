@@ -7,6 +7,10 @@ import {store} from '@/store/store'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 
+window.axios = require('axios')
+window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest'
+Vue.prototype.$http = window.axios
+
 Vue.use(ElementUI)
 Vue.config.productionTip = false
 
@@ -24,6 +28,15 @@ router.beforeEach((to, from, next) => {
     //     }
     //   })
     // }, 2000)
+  }
+  if (to.meta.users) {
+    console.log('HA ENTRADO AQUI')
+    axios.get('https://randomuser.me/api/?results=100')
+      .then((result) => {
+        // state.users = result.data.results
+        // console.log('ACTIONNNN' + state.users)
+        store.commit('saveUser', result.data.results)
+      })
   }
   next()
 })

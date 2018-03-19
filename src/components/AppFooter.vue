@@ -1,13 +1,22 @@
 <template>
   <el-footer class="footer">
     <el-row class="row">
-      <el-col :span="8">
+      <el-col class="col"
+        :md="8"
+        :sm="8"
+        :xs="12">
         Nombre: {{ user.name }}
       </el-col>
-      <el-col :span="8">
+      <el-col class="col"
+        :md="8"
+        :sm="8"
+        :xs="12">
         Enterprise: {{ user.enterprise }}
       </el-col>
-      <el-col :span="8">
+      <el-col class="col"
+        :md="8"
+        :sm="8"
+        :xs="12">
         Developer: <i :class="[user.developer ? 'el-icon-check' : 'el-icon-close']"></i>
       </el-col>
     </el-row>
@@ -30,8 +39,9 @@ export default {
 <style scoped>
   .footer {
     width: 100%;
-    position: absolute;
+    position: fixed;
     bottom: 0;
+    z-index: 2;
     display: flex;
     align-items: center;
     background-color: #545c64;
@@ -39,6 +49,9 @@ export default {
   }
   .row{
     width: 100%;
-    text-align: center;
+    text-align:   center;
+  }
+  .col{
+    padding: 1px;
   }
 </style>

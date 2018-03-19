@@ -1,6 +1,8 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
+import users from './UserStoreModule'
+
 Vue.use(Vuex)
 
 export const store = new Vuex.Store({
@@ -28,5 +30,8 @@ export const store = new Vuex.Store({
     home2: (state) => {
       state.user = state.user2
     }
+  },
+  modules: {
+    users
   }
 })

@@ -17,11 +17,11 @@ export default new Router({
       meta: {
         footer: 'home1'
       },
-      name: 'HelloWorld',
+      name: 'Home',
       component: Home,
       children: [
         {path: 'firstPage', component: SubPageOne, name: 'FirstPage'},
-        {path: 'secondPage', component: SubPageTwo, name: 'SecondPage'}
+        {path: 'secondPage', component: SubPageTwo, meta: {users: true}, name: 'SecondPage'}
       ]
     }
     // {
