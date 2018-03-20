@@ -62,8 +62,6 @@ export default {
     if (this.getCheckboxListAux.length > 0) {
       this.itemsArray = this.getCheckboxListAux
     }
-    // this.itemsArray[0].isActive = this.getIsActive(1)
-    // this.itemsArray[1].isActive = this.getIsActive(2)
     for (var i = 0; i < this.itemsArray.length; i += 1) {
       this.itemsArray[i].isActive = this.getIsActive(i)
     }
@@ -74,13 +72,7 @@ export default {
   methods: {
     ...mapMutations(['addNewCheckbox', 'setCheckboxAux']),
     saveItem (checkboxItem) {
-      // console.log(isActive)
       this.addNewCheckbox(checkboxItem)
-      // const index = this.itemsArray
-      // .findIndex(itemarray => itemarray.id === id)
-      // console.log(this.itemsArray)
-      // this.itemsArray[index].isActive = isActive
-      // console.log(this.itemsArray)
     },
     goCheckboxList () {
       this.$router.push('CheckboxList')
