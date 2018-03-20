@@ -10,6 +10,7 @@
       class="test"
       @checkbox-clicked="saveItem"
     />
+    <el-button>Ver listado de activos</el-button>
   </div>
 </template>
 
