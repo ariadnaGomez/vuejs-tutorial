@@ -2,9 +2,9 @@
   <div class="container">
     <p>{{ title }}</p>
     <input
-      v-model="algo"
+      v-model="checkboxModel"
       type="checkbox"
-      @click="sendEvent()">
+      @change="sendEvent()">
     {{ message }}
   </div>
 </template>
@@ -31,20 +31,19 @@ export default {
   },
   data () {
     return {
-      algo: this.isActive
+      checkboxModel: this.isActive
     }
   },
   computed: {
     message () {
-      return this.algo ? 'Esta activo' : 'No esta activo'
+      return this.checkboxModel ? 'Esta activo' : 'No esta activo'
     }
   },
   methods: {
     sendEvent () {
       const objectToSend = {
         id: this.id,
-        title: this.title,
-        isActive: !this.algo
+        isActive: this.checkboxModel
       }
       this.$emit('checkbox-clicked', objectToSend)
     }
@@ -53,5 +52,19 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+  .container {
+    margin: 20px;
+    -webkit-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+    box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+    background: #e8e8e8;
+    padding: 10px;
+    p {
+      margin-top: 0;
+      text-transform: capitalize;
+      font-size: 15px;
+      font-weight: 500;
 
+    }
+  }
 </style>

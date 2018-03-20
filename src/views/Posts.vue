@@ -1,44 +1,43 @@
+
 <template>
-  <div class="posts">
-    <pre>{{ itemsArray }}</pre>
+  <div
+    class="posts"
+    @click="test()">
+    <h1>Selector de posts</h1>
     <checkbox-item
-      v-for="item in itemsArray"
-      :key="item.id"
-      :id="item.id"
-      :title="item.title"
-      :is-active="item.isActive"
+      v-for="post in posts"
+      :key="post.id"
+      :id="post.id"
+      :title="post.title"
+      :is-active="post.isActive"
       class="test"
-      @checkbox-clicked="saveItem"
+      @checkbox-clicked="setActivePost"
     />
   </div>
 </template>
 
 <script>
-import CheckboxItem from '../components/checkbox-item.vue'
+import CheckboxItem from '@/components/checkbox-item.vue'
+import { mapState, mapActions, mapMutations } from 'vuex'
+
 export default {
   name: 'Posts',
   components: {CheckboxItem},
-  data () {
-    return {
-      itemsArray: [
-        {
-          id: 1,
-          isActive: false,
-          title: 'titulo1'
-        },
-        {
-          id: 2,
-          isActive: false,
-          title: 'titulo2'
-        }]
-    }
+  computed: mapState({
+    posts: state => state.modulePosts.posts
+  }),
+  created () {
+    this.getPosts()
   },
   methods: {
-    saveItem ({id, isActive}) {
-      const index = this.itemsArray.findIndex(itemarray => itemarray.id === id)
-      console.log(this.itemsArray)
-      this.itemsArray[index].isActive = isActive
-      console.log(this.itemsArray)
+    ...mapMutations([
+      'setActivePost'
+    ]),
+    ...mapActions({
+      getPosts: 'getLastPosts'
+    }),
+    test () {
+      console.log(this.$store.state.modulePosts.posts)
     }
   }
 }
