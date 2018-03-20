@@ -1,6 +1,6 @@
 import { shallow } from 'vue-test-utils'
 
-import CheckboxItem from '../../../src/components/checkbox-item.vue'
+import CheckboxItem from '@/components/checkbox-item.vue'
 
 describe('checkboxItem', () => {
   test('should render post title', () => {
@@ -25,6 +25,7 @@ describe('checkboxItem', () => {
     wrapper.vm.$on('checkbox-clicked', stub)
     checkbox.trigger('click')
     wrapper.update()
-    expect(stub).toBeCalledWith({title: 'My test title', isActive: false, id: 1})
+    expect(stub).toBeCalledWith(
+      {title: 'My test title', isActive: false, id: 1})
   })
 })

@@ -1,6 +1,6 @@
 import { shallow } from 'vue-test-utils'
-import Posts from '../../../src/views/Posts.vue'
-import CheckboxItem from '../../../src/components/checkbox-item.vue'
+import Posts from '@/views/Posts.vue'
+import CheckboxItem from '@/components/checkbox-item.vue'
 
 describe('Posts', () => {
   test('should render a checkbox item for each item', () => {
