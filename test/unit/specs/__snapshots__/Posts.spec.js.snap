@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Posts has same HTML structure 1`] = `
+"<div data-server-rendered=\\"true\\" class=\\"posts\\"><pre>[
+  {
+    &quot;isActive&quot;: false,
+    &quot;id&quot;: 1
+  },
+  {
+    &quot;isActive&quot;: false,
+    &quot;id&quot;: 2
+  }
+]</pre> <div class=\\"container test\\"><p></p> <input type=\\"checkbox\\">
+  No esta activo
+</div><div class=\\"container test\\"><p></p> <input type=\\"checkbox\\">
+  No esta activo
+</div></div>"
+`;

@@ -1,4 +1,5 @@
-import { shallow } from 'vue-test-utils'
+import { shallow, mount } from 'vue-test-utils'
+import { createRenderer } from 'vue-server-renderer'
 import Posts from '@/views/Posts.vue'
 import CheckboxItem from '@/components/checkbox-item.vue'
 
@@ -18,5 +19,16 @@ describe('Posts', () => {
     itemCheckbox.vm.$emit('checkbox-clicked', contentItemArray)
     wrapper.update()
     expect(wrapper.vm.itemsArray[0].isActive).toBe(contentItemArray.isActive)
+  })
+
+  it('has same HTML structure', () => {
+    const renderer = createRenderer()
+    const wrapper = mount(Posts)
+    wrapper.setData({ itemsArray:
+      [{ isActive: false, id: 1 }, {isActive: false, id: 2}] })
+    renderer.renderToString(wrapper.vm, (err, str) => {
+      if (err) throw new Error(err)
+      expect(str).toMatchSnapshot()
+    })
   })
 })
