@@ -1,9 +1,7 @@
-
 <template>
-  <div
-    class="posts"
-    @click="test()">
+  <div class="posts-list">
     <h1>Selector de posts</h1>
+    <router-link to="/active-posts">Go to posts activos</router-link>
     <checkbox-item
       v-for="post in posts"
       :key="post.id"
@@ -17,7 +15,7 @@
 </template>
 
 <script>
-import CheckboxItem from '@/components/checkbox-item.vue'
+import CheckboxItem from '../components/checkbox-item.vue'
 import { mapState, mapActions, mapMutations } from 'vuex'
 
 export default {
@@ -35,12 +33,14 @@ export default {
     ]),
     ...mapActions({
       getPosts: 'getLastPosts'
-    }),
-    test () {
-      console.log(this.$store.state.modulePosts.posts)
-    }
+    })
   }
 }
-
 </script>
-<style></style>
+
+<style lang="scss" scoped>
+  .posts-list {
+    margin: 0 auto;
+    max-width: 700px;
+  }
+</style>

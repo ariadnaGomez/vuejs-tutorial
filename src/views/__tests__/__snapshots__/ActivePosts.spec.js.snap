@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Posts has same HTML structure 1`] = `
+<div class="posts-list">
+    <h1>Posts activos</h1>
+    <router-link to="/posts">Go back</router-link>
+    <div id="3" class="post">
+        <p>title2</p>
+        <p></p>
+    </div>
+</div>
+`;

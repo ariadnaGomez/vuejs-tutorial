@@ -1,31 +1,52 @@
-import { shallow, mount } from 'vue-test-utils'
+import { shallow, mount, createLocalVue } from 'vue-test-utils'
 import { createRenderer } from 'vue-server-renderer'
+import flushPromises from 'flush-promises'
+import Vuex from 'vuex'
 import Posts from '@/views/Posts.vue'
 import CheckboxItem from '@/components/checkbox-item.vue'
 
 describe('Posts', () => {
-  test('should render a checkbox item for each item', () => {
-    const wrapper = shallow(Posts)
-    const lengthArrayItems = wrapper.vm.itemsArray.length
+  const localVue = createLocalVue()
+  localVue.use(Vuex)
+  let store
+  let actions
+  let state
+  let mutations
+  beforeEach(() => {
+    state = {modulePosts: {posts: [
+      {id: 2, isActive: false, title: 'title1'},
+      {id: 3, isActive: true, title: 'title2'}]}}
+    actions = {
+      getLastPosts: jest.fn(() => Promise.resolve())
+    }
+    mutations = {
+      setActivePost: jest.fn()
+    }
+    store = new Vuex.Store({
+      state,
+      actions,
+      mutations
+    })
+  })
+  test('should render a checkbox item for each item', async () => {
+    const wrapper = mount(Posts, {localVue, store})
+    await flushPromises()
+    const lengthArrayItems = wrapper.vm.posts.length
     expect(wrapper.findAll(CheckboxItem).length).toBe(lengthArrayItems)
   })
 
   test('should save each checkbox in the store', () => {
-    const wrapper = shallow(Posts)
+    const wrapper = shallow(Posts, {localVue, store})
     const itemCheckbox = wrapper.find(CheckboxItem)
-    const contentItemArray = { isActive: true, id: 1 }
-    wrapper.setData({ itemsArray:
-      [{ isActive: false, id: 1 }, {isActive: false, id: 2}] })
+    const contentItemArray = { isActive: true, id: 2 }
     itemCheckbox.vm.$emit('checkbox-clicked', contentItemArray)
     wrapper.update()
-    expect(wrapper.vm.itemsArray[0].isActive).toBe(contentItemArray.isActive)
+    expect(mutations.setActivePost).toBeCalledWith(state, contentItemArray)
   })
 
   it('has same HTML structure', () => {
     const renderer = createRenderer()
-    const wrapper = mount(Posts)
-    wrapper.setData({ itemsArray:
-      [{ isActive: false, id: 1 }, {isActive: false, id: 2}] })
+    const wrapper = mount(Posts, {localVue, store})
     renderer.renderToString(wrapper.vm, (err, str) => {
       if (err) throw new Error(err)
       expect(str).toMatchSnapshot()

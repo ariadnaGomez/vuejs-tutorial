@@ -25,7 +25,6 @@ describe('checkboxItem', () => {
     wrapper.vm.$on('checkbox-clicked', stub)
     checkbox.trigger('click')
     wrapper.update()
-    expect(stub).toBeCalledWith(
-      {title: 'My test title', isActive: false, id: 1})
+    expect(stub).toBeCalledWith({isActive: false, id: 1})
   })
 })
