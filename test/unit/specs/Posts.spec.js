@@ -44,7 +44,7 @@ describe('Posts', () => {
     expect(mutations.setActivePost).toBeCalledWith(state, contentItemArray)
   })
 
-  it('has same HTML structure', () => {
+  test('has same HTML structure', () => {
     const renderer = createRenderer()
     const wrapper = mount(Posts, {localVue, store})
     renderer.renderToString(wrapper.vm, (err, str) => {

@@ -24,4 +24,15 @@ describe('Posts', () => {
       expect(str).toMatchSnapshot()
     })
   })
+
+  it('has same HTML structure', () => {
+    const renderer = createRenderer()
+    getters.activePosts.mockImplementation(() => [
+      {id: 3, isActive: true, title: 'title2'}, {id: 4, title: 'title3'}])
+    const wrapper = mount(ActivePosts, {localVue, store})
+    renderer.renderToString(wrapper.vm, (err, str) => {
+      if (err) throw new Error(err)
+      expect(str).toMatchSnapshot()
+    })
+  })
 })

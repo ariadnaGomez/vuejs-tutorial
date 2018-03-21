@@ -17,7 +17,7 @@
 <script>
 import CheckboxItem from '../components/checkbox-item.vue'
 import { mapState, mapActions, mapMutations } from 'vuex'
-import loading from '@/mixins/loading.js'
+import loading from '../mixins/loading'
 
 export default {
   name: 'Posts',

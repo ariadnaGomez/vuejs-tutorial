@@ -8,7 +8,7 @@ Vue.use(Vuex)
 const store = new Vuex.Store({
   modules: {
     form: moduleForm,
-    modulePosts: modulePosts
+    modulePosts
   }
 })
 

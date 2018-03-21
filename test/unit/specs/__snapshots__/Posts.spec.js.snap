@@ -1,20 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Posts has same HTML structure 1`] = `
-<div class="posts-list">
-    <h1>Selector de posts</h1>
-    <router-link to="/active-posts">Go to posts activos</router-link>
-    <div class="container test"><span class="index">2</span>
-        <div class="text-container">
-            <p>title1</p>
-            <input type="checkbox"> No esta activo
-        </div>
-    </div>
-    <div class="container test"><span class="index">3</span>
-        <div class="text-container">
-            <p>title2</p>
-            <input type="checkbox" checked="checked"> Esta activo
-        </div>
-    </div>
-</div>
+"<div data-server-rendered=\\"true\\" class=\\"posts-list\\"><h1>Selector de posts</h1> <router-link to=\\"/active-posts\\">Go to posts activos</router-link> <div class=\\"container test\\"><span class=\\"index\\">2</span> <div class=\\"text-container\\"><p>title1</p> <input type=\\"checkbox\\">
+    No esta activo
+  </div></div><div class=\\"container test\\"><span class=\\"index\\">3</span> <div class=\\"text-container\\"><p>title2</p> <input type=\\"checkbox\\" checked=\\"checked\\">
+    Esta activo
+  </div></div></div>"
 `;
