@@ -1,12 +1,11 @@
 const state = {
-  checkboxList: [],
-  checkboxListAux: []
+  checkboxList: []
 }
 
 const actions = {}
 
 const getters = {
-  getCheckboxList: (state) => {
+  getCheckboxListOrdered: (state) => {
     return state.checkboxList.sort(function (a, b) {
       if (a.id > b.id) {
         return 1
@@ -17,33 +16,59 @@ const getters = {
       return 0
     })
   },
-  getIsActive: (state) => (checkboxID) => {
-    var index = state.checkboxList.map(function (item) {
-      return item.id
-    }).indexOf(checkboxID)
-    if (index > -1) {
-      return true
-    }
-    return false
-  },
-  getCheckboxListAux: (state) => {
-    return state.checkboxListAux
+  getCheckboxListChecked: (state, getters) => {
+    return getters.getCheckboxListOrdered.filter(checkboxItem =>
+      checkboxItem.isActive
+    )
   }
 }
 
 const mutations = {
-  addNewCheckbox: (state, checkbox) => {
-    var removeIndex = state.checkboxList.map(function (item) {
-      return item.id
-    }).indexOf(checkbox.id)
-    if (removeIndex > -1) {
-      state.checkboxList.splice(removeIndex, 1)
-    } else {
-      state.checkboxList.push(checkbox)
+  initializeStore: (state) => {
+    if (state.checkboxList.length === 0) {
+      state.checkboxList = [
+        {
+          id: 0,
+          isActive: false,
+          title: 'titulo0'
+        },
+        {
+          id: 1,
+          isActive: false,
+          title: 'titulo1'
+        },
+        {
+          id: 2,
+          isActive: false,
+          title: 'titulo2'
+        },
+        {
+          id: 3,
+          isActive: false,
+          title: 'titulo3'
+        },
+        {
+          id: 4,
+          isActive: false,
+          title: 'titulo4'
+        }
+      ]
     }
   },
-  setCheckboxAux: (state, checkboxListAux) => {
-    state.checkboxListAux = checkboxListAux
+  changeIsActiveValue: (state, checkboxItem) => {
+    const index = state.checkboxList
+      .findIndex(checkbox =>
+        checkbox.id === checkboxItem.id
+      )
+    state.checkboxList[index].isActive = checkboxItem.isActive
+  },
+  addNewCheckbox: (state) => {
+    const newCheckbox = {
+      id: state.checkboxList.length,
+      isActive: false,
+      title: 'titulo' + state.checkboxList.length
+    }
+    state.checkboxList.push(newCheckbox)
   }
 }
 
