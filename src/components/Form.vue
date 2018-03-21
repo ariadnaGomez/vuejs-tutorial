@@ -20,6 +20,11 @@ import CustomInput from './CustomInput.vue'
 export default {
   name: 'Form',
   components: {CustomInput},
+  data () {
+    return {
+      form: {}
+    }
+  },
   computed: {
     formErrors () {
       return [

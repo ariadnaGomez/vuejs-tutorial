@@ -1,7 +1,7 @@
 <template>
   <div class="posts-list">
     <h1>Posts activos</h1>
-    <router-link to="/">Go back</router-link>
+    <router-link to="/posts">Go back</router-link>
     <div
       v-for="post in posts"
       :key="post.id"
