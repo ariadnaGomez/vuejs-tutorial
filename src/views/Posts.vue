@@ -17,15 +17,20 @@
 <script>
 import CheckboxItem from '../components/checkbox-item.vue'
 import { mapState, mapActions, mapMutations } from 'vuex'
+import loading from '@/mixins/loading.js'
 
 export default {
   name: 'Posts',
   components: {CheckboxItem},
+  mixins: [loading],
   computed: mapState({
     posts: state => state.modulePosts.posts
   }),
-  created () {
-    this.getPosts()
+  beforeRouteEnter (to, from, next) {
+    next(vm => {
+      vm.showLoading()
+      vm.getPosts().then(() => vm.hideLoading())
+    })
   },
   methods: {
     ...mapMutations([

@@ -1,7 +1,7 @@
 <template>
   <div class="posts-list">
     <h1>Posts activos</h1>
-    <router-link to="/posts">Go back</router-link>
+    <router-link to="/">Go back</router-link>
     <div
       v-for="post in posts"
       :key="post.id"
@@ -30,7 +30,7 @@ export default {
     margin: 0 auto;
     max-width: 700px;
     .post {
-      border: 1px solid blue;
+      border: 2px solid $color-green;
       margin: 20px;
       padding: 20px;
     }

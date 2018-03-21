@@ -61,12 +61,12 @@ export default {
     -webkit-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
     -moz-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
     box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
-    background: #e8e8e8;
+    background: $color-grey-light;
     padding: 10px;
     .index {
       align-self: center;
       flex-basis: 15%;
-      color: #fcae1e;
+      color: $color-green;
       font-size: 30px;
       font-weight: 600;
       padding-right: 10px;

@@ -13,7 +13,7 @@ export default {
       state.posts = payload
     },
     setActivePost (state, {id, isActive}) {
-      const index = state.posts.findIndex(itemarray => itemarray.id === id)
+      const index = state.posts.findIndex(post => post.id === id)
       state.posts[index].isActive = isActive
     }
   },

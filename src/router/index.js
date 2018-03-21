@@ -3,22 +3,20 @@ import Router from 'vue-router'
 import HelloWorld from '@/components/HelloWorld'
 import Posts from '@/views/Posts'
 import ActivePosts from '@/views/ActivePosts'
-import { Loading } from 'element-ui'
 
 Vue.use(Router)
 
 const router = new Router({
-  mode: 'history',
   routes: [
     {
-      path: '/',
+      path: '/hello-word',
       name: 'HelloWorld',
       components: {
         default: HelloWorld
       }
     },
     {
-      path: '/posts',
+      path: '/',
       name: 'Posts',
       component: Posts
     },
@@ -28,17 +26,6 @@ const router = new Router({
       component: ActivePosts
     }
   ]
-})
-let loadingPage
-router.beforeEach((to, from, next) => {
-  loadingPage = Loading.service({
-    fullscreen: true
-  })
-  next()
-})
-
-router.afterEach((to, from) => {
-  loadingPage.close()
 })
 
 export default router
