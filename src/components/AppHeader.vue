@@ -16,28 +16,34 @@
           src="@/assets/logo.png"
           @click="restartIndex">
       </div>
-      <div
-        v-if="!flag"
-        class="buttons">
-        <el-menu-item index="/posts">
-          Ingresar
-        </el-menu-item>
-      </div>
-      <div
-        v-if="flag"
-        class="buttons">
-        <el-menu-item index="/posts">
-          Posts Page
-        </el-menu-item>
-        <el-menu-item index="/hello-word">
-          Form Page
-        </el-menu-item>
-      </div>
+
+      <el-menu-item
+        v-if="!isLogged"
+        index="/login">
+        Login
+      </el-menu-item>
+
+      <el-menu-item
+        v-if="isLogged"
+        index="/posts">
+        Posts Page
+      </el-menu-item>
+      <el-menu-item
+        v-if="isLogged"
+        index="/hello-word">
+        Form Page
+      </el-menu-item>
+      <a
+        v-if="isLogged"
+        href="#"
+        @click.prevent="_logout">Logout</a>
+
     </el-menu>
   </header>
 </template>
 
 <script>
+import {mapGetters, mapActions} from 'vuex'
 export default {
   name: 'AppHeader',
   data () {
@@ -46,10 +52,21 @@ export default {
       flag: true
     }
   },
+  computed: {
+    ...mapGetters({
+      isLogged: 'getLogged'
+    })
+  },
   created: function () {
     this.activeLink = this.$route.fullPath
   },
   methods: {
+    ...mapActions(['logout']),
+    _logout () {
+      console.log('Entra en la función de logout')
+      this.logout()
+      this.$router.push({name: 'Welcome'})
+    },
     handleSelect (key, keyPath) {
       console.log(key, keyPath)
       this.activeLink = key
