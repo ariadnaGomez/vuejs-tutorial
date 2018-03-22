@@ -48,8 +48,7 @@ export default {
   name: 'AppHeader',
   data () {
     return {
-      activeLink: '',
-      flag: true
+      activeLink: ''
     }
   },
   computed: {
