@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import HelloWorld from '@/components/HelloWorld'
 import Posts from '@/views/Posts'
+import CheckboxList from '@/views/CheckboxList'
 import { Loading } from 'element-ui'
 
 Vue.use(Router)
@@ -20,6 +21,11 @@ const router = new Router({
       path: '/posts',
       name: 'Posts',
       component: Posts
+    },
+    {
+      path: '/checkboxList',
+      name: 'CheckboxList',
+      component: CheckboxList
     }
   ]
 })

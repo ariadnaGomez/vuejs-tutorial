@@ -1,44 +1,40 @@
 <template>
   <div class="posts">
-    <pre>{{ itemsArray }}</pre>
+    <pre>{{ getCheckboxListOrdered }}</pre>
+    <el-button @click="addNewCheckbox">Añadir checkbox</el-button>
     <checkbox-item
-      v-for="item in itemsArray"
+      v-for="item in getCheckboxListOrdered"
       :key="item.id"
       :id="item.id"
       :title="item.title"
       :is-active="item.isActive"
       class="test"
-      @checkbox-clicked="saveItem"
+      @checkbox-clicked="changeIsActiveValue"
     />
+    <br>
+    <br>
+    <el-button @click="goCheckboxList">Ver listado de checkbox</el-button>
   </div>
 </template>
 
 <script>
 import CheckboxItem from '../components/checkbox-item.vue'
+import {mapGetters, mapMutations} from 'vuex'
+
 export default {
   name: 'Posts',
   components: {CheckboxItem},
-  data () {
-    return {
-      itemsArray: [
-        {
-          id: 1,
-          isActive: false,
-          title: 'titulo1'
-        },
-        {
-          id: 2,
-          isActive: false,
-          title: 'titulo2'
-        }]
-    }
+  computed: {
+    ...mapGetters(['getCheckboxListOrdered'])
+  },
+  created: function () {
+    this.initializeStore()
   },
   methods: {
-    saveItem ({id, isActive}) {
-      const index = this.itemsArray.findIndex(itemarray => itemarray.id === id)
-      console.log(this.itemsArray)
-      this.itemsArray[index].isActive = isActive
-      console.log(this.itemsArray)
+    ...mapMutations(['initializeStore', 'changeIsActiveValue',
+      'addNewCheckbox']),
+    goCheckboxList () {
+      this.$router.push('CheckboxList')
     }
   }
 }
