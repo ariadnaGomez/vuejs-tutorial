@@ -1,31 +1,35 @@
 export default {
   state: {
-    Name: '',
-    Email: ''
+    title: '',
+    body: ''
   },
   mutations: {
-    setNombre (state, name) {
-      state.Name = name
+    settitle (state, name) {
+      state.title = name
     },
-    setEmail (state, email) {
-      state.Email = email
+    setbody (state, email) {
+      state.body = email
+    },
+    resetForm (state) {
+      state.title = ''
+      state.body = ''
     }
   },
 
   getters: {
-    getNameError (state) {
-      if (!state.Name || state.Name.length < 3) {
-        return 'El nombre debe tener más de 3 letras'
+    formErrors (state) {
+      let titleError = null
+      let bodyError = null
+      if (!state.title || state.title.length < 3) {
+        titleError = 'El nombre debe tener más de 3 letras'
       }
-      return null
-    },
-    getEmailError (state) {
-      /* eslint-disable */
-      const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-      if (re.test(state.Email)) {
-        return null
+      if (!state.body || state.body.length < 3) {
+        bodyError = 'El email está mal formateado'
       }
-      return 'El email está mal formateado'
+      return [
+        titleError,
+        bodyError
+      ].filter(error => error !== null)
     }
   }
 }

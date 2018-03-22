@@ -1,7 +1,7 @@
 <template>
   <div class="posts-list">
     <h1>Selector de posts</h1>
-    <router-link to="/active-posts">Go to posts activos</router-link>
+
     <checkbox-item
       v-for="post in posts"
       :key="post.id"

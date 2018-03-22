@@ -38,4 +38,13 @@ describe('posts store', () => {
     const activePosts = postsStore.getters.activePosts(state)
     expect(activePosts).toEqual([allPosts[1]])
   })
+
+  test('addPosts add new post to posts list', () => {
+    const allPosts = [{id: 1, isActive: false}, {id: 2, isActive: true}]
+    const state = {posts: allPosts}
+    const newPost = {body: 'body text', title: 'The title'}
+    postsStore.mutations.addPost(state, newPost)
+    expect(state.posts[0]).toEqual(
+      {body: 'body text', title: 'The title', id: 3, isActive: false})
+  })
 })

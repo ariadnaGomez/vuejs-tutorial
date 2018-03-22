@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`navigation has same HTML structure 1`] = `
+<el-menu router="true" default-active="3" mode="horizontal" background-color="#545c64" text-color="#fff" active-text-color="#ffd04b" class="menu">
+    <el-menu-item route="[object Object]" index="1">
+        Posts
+    </el-menu-item>
+    <el-menu-item route="[object Object]" index="2">
+        Posts activos
+    </el-menu-item>
+    <el-menu-item route="[object Object]" index="3">
+        Form
+    </el-menu-item>
+</el-menu>
+`;

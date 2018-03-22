@@ -6,9 +6,9 @@
       label-width="120px">
       <el-row :gutter="20">
         <custom-input
-          label="Nombre"/>
+          label="title"/>
         <custom-input
-          label="Email"/>
+          label="body"/>
       </el-row>
     </el-form>
     <el-button @click="clickTheButton()">Click me!</el-button>
@@ -16,19 +16,25 @@
 </template>
 
 <script>
+import { mapMutations, mapGetters } from 'vuex'
+
 import CustomInput from './CustomInput.vue'
 export default {
   name: 'Form',
   components: {CustomInput},
-  computed: {
-    formErrors () {
-      return [
-        this.$store.getters.getNameError,
-        this.$store.getters.getEmailError
-      ].filter(error => error !== null)
+  data () {
+    return {
+      form: {}
     }
   },
+  computed: {
+    ...mapGetters(['formErrors'])
+  },
+  created () {
+    this.resetForm()
+  },
   methods: {
+    ...mapMutations(['addPost', 'resetForm']),
     clickTheButton () {
       if (this.formErrors.length) {
         let message = '<p>The following fields must be reviewed: </p>'
@@ -39,7 +45,9 @@ export default {
           dangerouslyUseHTMLString: true,
           message: message
         })
+        return
       }
+      this.addPost(this.$store.state.form)
     }
   }
 

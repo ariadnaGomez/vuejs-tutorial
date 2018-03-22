@@ -1,5 +1,25 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Posts has same HTML structure 1`] = `"<div data-server-rendered=\\"true\\" class=\\"posts-list\\"><h1>Posts activos</h1> <router-link to=\\"/\\">Go back</router-link> <div id=\\"3\\" class=\\"post\\"><p>title2</p> <p></p></div></div>"`;
+exports[`Posts has same HTML structure 1`] = `
+<div class="posts-list">
+    <h1>Posts activos</h1>
+    <div id="3" class="post">
+        <p>title2</p>
+        <p></p>
+    </div>
+</div>
+`;
 
-exports[`Posts has same HTML structure 2`] = `"<div data-server-rendered=\\"true\\" class=\\"posts-list\\"><h1>Posts activos</h1> <router-link to=\\"/\\">Go back</router-link> <div id=\\"3\\" class=\\"post\\"><p>title2</p> <p></p></div><div id=\\"4\\" class=\\"post\\"><p>title3</p> <p></p></div></div>"`;
+exports[`Posts has same HTML structure 2`] = `
+<div class="posts-list">
+    <h1>Posts activos</h1>
+    <div id="3" class="post">
+        <p>title2</p>
+        <p></p>
+    </div>
+    <div id="4" class="post">
+        <p>title3</p>
+        <p></p>
+    </div>
+</div>
+`;
