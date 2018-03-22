@@ -6,7 +6,6 @@ import ActivePosts from '@/views/ActivePosts'
 import AppWelcome from '@/views/AppWelcome'
 import AppLogin from '@/views/AppLogin'
 
-// import {store} from '@/main'
 import store from '../store'
 
 Vue.use(Router)
@@ -29,7 +28,8 @@ const router = new Router({
     {
       path: '/login',
       name: 'Login',
-      component: AppLogin
+      component: AppLogin,
+      meta: { Login: true }
     },
     {
       path: '/posts',
@@ -42,7 +42,8 @@ const router = new Router({
       name: 'ActivePosts',
       component: ActivePosts,
       meta: { Auth: true }
-    }
+    },
+    {path: '*', redirect: '/'}
   ]
 })
 
@@ -50,6 +51,12 @@ router.beforeEach((to, from, next) => {
   if (to.meta.Auth && !store.state.auth.logged) {
     next({path: '/login'})
   } else {
+    if (store.state.auth.logged) {
+      store.state.auth.user = JSON.parse(window.localStorage.getItem('_user'))
+      if (to.meta.Login) {
+        next({path: '/'})
+      }
+    }
     next()
   }
 })

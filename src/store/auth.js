@@ -7,20 +7,30 @@ const state = {
 
 const actions = {
   login: ({commit}, userInput) => {
+    console.log('Ha llegado al authLogon con los datos: ' + userInput)
+    const userToMatch = {
+      user: 'Arcas',
+      pass: '123456'
+    }
     return new Promise((resolve, reject) => {
-      axios.post('https://reqres.in/api/login', {body: userInput})
-        .then(user => {
-          window.localStorage.setItem('_token', user.body.token)
-          window.localStorage.setItem('_user', userInput)
-          commit('setUser')
-          resolve(user)
-        })
-        .catch(error => {
-          reject(error)
-        })
-        .finally(() => {
-          console.log('Ha llegado al finally del login')
-        })
+      if (userInput.user === userToMatch.user &&
+        userInput.pass === userToMatch.pass) {
+        axios.post('https://reqres.in/api/users', {body: userInput})
+          .then(user => {
+            console.log('Ha llegado al then del login' + user.data.id)
+            window.localStorage.setItem('_token', user.data.id)
+            window.localStorage.setItem('_user', JSON.stringify(userInput))
+            commit('setUser')
+            resolve(user)
+          })
+          .catch(error => {
+            console.log('Ha llegado al catch del login')
+            reject(error)
+          })
+          .finally(() => {
+            console.log('Ha llegado al finally del login')
+          })
+      }
     })
   },
   logout: ({commit}) => {
@@ -32,12 +42,6 @@ const actions = {
 }
 
 const getters = {
-  getUser: (state) => {
-    return state.user
-  },
-  getLogged: (state) => {
-    return state.logged
-  }
 }
 
 const mutations = {
@@ -49,9 +53,6 @@ const mutations = {
       state.user = null
       state.logged = false
     }
-  },
-  setLogged: (state, logged) => {
-    state.logged = logged
   }
 }
 

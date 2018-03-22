@@ -14,7 +14,7 @@
         <img
           class="logoImg"
           src="@/assets/logo.png"
-          @click="restartIndex">
+          @click="goWelcome">
       </div>
 
       <el-menu-item
@@ -22,6 +22,13 @@
         index="/login">
         Login
       </el-menu-item>
+
+      <p
+        v-if="isLogged"
+        class="logout">{{ userLogged.user }}</p>
+      <p
+        v-if="isLogged"
+        class="logout">{{ userLogged.pass }}</p>
 
       <el-menu-item
         v-if="isLogged"
@@ -35,6 +42,7 @@
       </el-menu-item>
       <a
         v-if="isLogged"
+        class="logout"
         href="#"
         @click.prevent="_logout">Logout</a>
 
@@ -43,7 +51,7 @@
 </template>
 
 <script>
-import {mapGetters, mapActions} from 'vuex'
+import {mapState, mapActions} from 'vuex'
 export default {
   name: 'AppHeader',
   data () {
@@ -52,8 +60,9 @@ export default {
     }
   },
   computed: {
-    ...mapGetters({
-      isLogged: 'getLogged'
+    ...mapState({
+      userLogged: state => state.auth.user,
+      isLogged: state => state.auth.logged
     })
   },
   created: function () {
@@ -64,13 +73,13 @@ export default {
     _logout () {
       console.log('Entra en la función de logout')
       this.logout()
-      this.$router.push({name: 'Welcome'})
+      this.$router.push({name: 'Login'})
     },
     handleSelect (key, keyPath) {
       console.log(key, keyPath)
       this.activeLink = key
     },
-    restartIndex () {
+    goWelcome () {
       this.$router.push('/')
       this.activeLink = ''
     }
@@ -103,11 +112,15 @@ export default {
           cursor: pointer;
         }
     }
-    .buttons{
-      display: flex;
-    }
     .logo:focus {
       outline: none;
+    }
+    .logout{
+      align-self: center;
+      margin: 0 20px 0 50px;
+      text-decoration: none;
+      font-size: 13px;
+      color: white;
     }
   }
 </style>
