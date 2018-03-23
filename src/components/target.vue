@@ -43,9 +43,6 @@ export default {
       padding: 10px;
       text-align: start;
     }
-    &-header test{
-      background-color: aquamarine;
-    }
   }
   /*posicion: absolute*/
   /*top: 0*/
