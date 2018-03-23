@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import HelloWorld from '@/components/HelloWorld'
+import Card from '@/components/target'
 import Posts from '@/views/Posts'
 import ActivePosts from '@/views/ActivePosts'
 import AppWelcome from '@/views/AppWelcome'
@@ -38,6 +39,12 @@ const router = new Router({
       meta: { Auth: true }
     },
     {
+      path: '/card',
+      name: 'Card',
+      component: Card,
+      meta: { Auth: true }
+    },
+    {
       path: '/active-posts',
       name: 'ActivePosts',
       component: ActivePosts,
@@ -54,7 +61,12 @@ router.beforeEach((to, from, next) => {
     if (store.state.auth.logged) {
       store.state.auth.user = JSON.parse(window.localStorage.getItem('_user'))
       if (to.meta.Login) {
-        next({path: '/'})
+        console.log('bla')
+        if (from.name === 'Welcome') {
+          next(false)
+          return
+        }
+        next({name: 'Welcome'})
       }
     }
     next()
