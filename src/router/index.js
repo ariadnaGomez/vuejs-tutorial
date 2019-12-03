@@ -10,6 +10,7 @@ const router = new Router({
   routes: [{
     path: '/',
     name: 'HelloWorld',
+<<<<<<< HEAD
     components: {
       default: HelloWorld
     }
@@ -28,3 +29,8 @@ router.afterEach((to, from) => {
 })
 
 export default router
+=======
+    component: HelloWorld,
+  }, ],
+})
+>>>>>>> test
